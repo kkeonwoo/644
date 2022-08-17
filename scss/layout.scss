@@ -1,0 +1,80 @@
+@import "vars";
+@import "mixin";
+@import "font";
+
+body {
+  font-family: "HelveticaMedium", "Arial", sans-serif;
+  word-break: keep-all;
+  text-transform: uppercase;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  padding: 50px;
+  font-size: 18px;
+  font-weight: 500;
+  #date {
+    position: absolute;
+    left: 50%;
+    line-height: 1.5;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .language {
+    overflow: hidden;
+    a:after {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      right: 100%;
+      content: attr(data-title);
+    }
+  }
+  a {
+    display: inline-block;
+    position: relative;
+    &:hover {
+      color: $red;
+      animation: gnbMove 1.2s linear infinite forwards;
+      &::after {
+        animation: gnbMove 1.2s linear infinite forworads;
+      }
+    }
+    span {
+      display: block;
+      margin-left: 5px;
+    }
+  }
+}
+
+#gnb {
+  ul {
+    display: flex;
+    > li {
+      overflow: hidden;
+      margin-right: 50px;
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}) a::after {
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          right: 100%;
+          content: attr(data-title);
+        }
+      }
+    }
+  }
+}
+
+@keyframes gnbMove {
+  0% {
+    right: 0%;
+  }
+  100% {
+    right: -100%;
+  }
+}

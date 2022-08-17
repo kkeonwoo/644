@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="KOR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>644</title>
+    <!-- link-favicon -->
+    <link rel="shortcut icon" href="../images/common/nc644-favicon.png" type="image/x-icon" />
+    <!-- css-reset -->
+    <link rel="stylesheet" href="../css/reset.css" />
+    <!-- link-font -->
+
+    <!-- link-css -->
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <!-- link-js -->
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/imagesloaded.pkgd.min.js"></script>
+    <script src="../js/greensock/gsap.min.js"></script>
+    <script src="../js/greensock/CSSRulePlugin.min.js"></script>
+    <script src="../js/greensock/ScrollTrigger.min.js"></script>
+    <script src="../js/opening.js" defer></script>
+  </head>
+  <body>
+    <!-- header -->
+    <header id="header">
+      <nav id="gnb">
+        <h1 class="blind">gnb</h1>
+        <ul>
+          <li>
+            <a href="#" data-title="about"><span>about</span></a>
+          </li>
+          <li>
+            <a href="#" data-title="mission"><span>mission</span></a>
+          </li>
+          <li>
+            <a href="#" data-title="work"><span>work</span></a>
+          </li>
+          <li>
+            <a href="#" data-title="(shop↗)"><span>(shop↗)</span></a>
+          </li>
+        </ul>
+      </nav>
+      <p id="date">check-in<span></span></p>
+      <div class="language">
+        <a href="#" data-title="(en)"><span>(en)</span></a>
+      </div>
+    </header>
+    <!-- // header -->
+    <main>
+      <section id="mainVisual">
+        <div class="bgAni">
+          <canvas id="canvas"></canvas>
+          <img src="../images/main/nc644-intro-door-wrap.svg" alt="" />
+        </div>
+        <div class="contents">
+          <div class="count">
+            <div class="count100">
+              <div class="num">000</div>
+            </div>
+            <ul class="count644">
+              <div class="numWrap">
+                <li class="num before">1</li>
+                <li class="num">6</li>
+              </div>
+              <div class="numWrap">
+                <li class="num before">0</li>
+                <li class="num">4</li>
+              </div>
+              <div class="numWrap">
+                <li class="num before">0</li>
+                <li class="num">4</li>
+              </div>
+            </ul>
+          </div>
+          <div class="dot"></div>
+          <div class="guideTxt">
+            <p class="loading">loading</p>
+            <p class="scrollDown">scroll down</p>
+          </div>
+          <div class="bottomTxt">
+            <p>
+              644 is the character creative studio <br />
+              where engaging characters come to life.
+            </p>
+            <p class="notice">본 웹사이트는 구글 크롬 브라우저에 최적화되어 있습니다.</p>
+          </div>
+          <img src="../images/main/nc644-intro-door.svg" alt="" />
+        </div>
+      </section>
+    </main>
+    <script>
+      // header date
+      const dateDom = $("#date");
+      const now = new Date();
+      const month = now.getMonth();
+      const date = now.getDate();
+      function addZero(num) {
+        return num < 10 ? "0" + num : "" + num;
+      }
+      const monthList = ["January", "Fabruary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
+      dateDom.html(`check-in </br> <span>${addZero(date)} ${monthList[month]} (KST)</span>`);
+
+      // opening count
+      const count100 = $("#mainVisual .count100 .num");
+      const count = {
+        count100: 100,
+      };
+      function fillZero(num, width) {
+        let n = num + "";
+        return n.length >= width ? n : new Array(width - n.length + 1).join("0") + n;
+      }
+      const countTL = gsap.timeline();
+      gsap.defaults({
+        duration: 1,
+        ease: "circ.inout",
+      });
+      countTL
+        .from(count, {
+          count100: 0,
+          duration: 3,
+          ease: "linear",
+          onUpdate: function () {
+            count100.text(fillZero(Math.round(count.count100), 3));
+          },
+          onComplete: () => {
+            count100.css({ opacity: 0 });
+            $("#mainVisual .numWrap .before").css({ opacity: 1 });
+          },
+        })
+        .to("#mainVisual .count644 .numWrap", {
+          y: -100,
+          delay: 0.5,
+          stagger: {
+            each: 0.5,
+          },
+        })
+        .to("#mainVisual .loading", {
+          opacity: 0,
+          ease: "none",
+          duration: 0.1,
+        })
+        .to("#mainVisual .scrollDown", {
+          opacity: 1,
+          ease: "none",
+          duration: 0.1,
+          delay: 0.1,
+        });
+
+      // opening door
+      // const bgWrap = $("#mainVisual .bgAni img");
+      // const openingDoorTL = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: "#mainVisual",
+      //     makers: true,
+      //     pin: true,
+      //     scrub: 1,
+      //     start: "top,top",
+      //     end: "bottom top",
+      //   },
+      // });
+
+      // openingDoorTL.to(bgWrap, {
+      //   y: -130,
+      //   width: "110%",
+      //   duration: 5,
+      //   ease: "none",
+      // });
+    </script>
+  </body>
+</html>

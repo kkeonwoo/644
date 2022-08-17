@@ -1,0 +1,130 @@
+@import "vars";
+@import "mixin";
+@import "font";
+
+#canvas {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#mainVisual {
+  width: 100%;
+  height: 100vh;
+  background-color: $bg-color;
+  .bgAni {
+    img {
+      @include absCenter(true, false);
+      top: 120px;
+    }
+  }
+  .contents {
+    .count {
+      width: 300px;
+      height: 160px;
+      padding: 0 30px;
+      overflow: hidden;
+      @include absCenter(true, true);
+      font-size: $font-extra-large + 150;
+      font-family: "644Number";
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      .count100 {
+        position: absolute;
+        top: -10%;
+      }
+      .count644 {
+        @include absCenter(true, true);
+        display: flex;
+        justify-content: center;
+        .numWrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          transform: translateY(25%);
+          &:nth-child(1) {
+            align-items: end;
+            text-align: right;
+          }
+          .before {
+            opacity: 0;
+          }
+        }
+      }
+    }
+    .dot {
+      width: 45px;
+      height: 45px;
+      border-radius: 100%;
+      background-color: #000;
+      @include absCenter(true, false);
+      top: 63%;
+    }
+    .guideTxt {
+      position: relative;
+      font-size: $font-normal + 5;
+      font-weight: 500;
+      text-align: center;
+      overflow: hidden;
+      width: 100%;
+      height: 20px;
+      @include absCenter(true, false);
+      bottom: 20%;
+      .loading,
+      .scrollDown {
+        width: 100%;
+        display: inline-block;
+        position: absolute;
+        // opacity: 0;
+      }
+      .loading {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .scrollDown {
+        opacity: 0;
+        animation: moveTxtVertical 0.8s linear infinite both;
+        &::after {
+          content: "SCROLL DOWN";
+          position: absolute;
+          display: block;
+          font-size: $font-normal + 5;
+          @include absCenter(true, false);
+          bottom: 100%;
+        }
+      }
+    }
+    .bottomTxt {
+      @include absCenter(true, false);
+      bottom: 5%;
+      text-align: center;
+      line-height: 1.2;
+      font-size: 14px;
+      .notice {
+        margin-top: 10px;
+        font-family: "NotoSansKR-Medium", sans-serif;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+    img {
+      @include absCenter(true, false);
+      top: 180px;
+      z-index: 2;
+      width: 460px;
+    }
+  }
+}
+
+@keyframes moveTxtVertical {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, 100%);
+  }
+}
