@@ -11,8 +11,8 @@ class Opening {
   constructor(_x, _y) {
     this.x = _x;
     this.y = _y;
-    this.width = 247 * 1.2;
-    this.height = 132 * 1.2;
+    this.width = 247;
+    this.height = 132;
     this.speedY = 0.5;
   }
   draw() {
@@ -23,25 +23,26 @@ class Opening {
     this.draw();
   }
 }
+
 const openingList = [];
-const openingList02 = [];
 for (let i = 0; i < 6; i++) {
   for (let j = 0; j < 5; j++) {
     if (j % 2 === 1) {
-      const openings = new Opening(j * 440, i * 400 - 200);
+      const openings = new Opening(j * 400, i * 400 - 200);
       openingList.push(openings);
     } else {
-      const openings = new Opening(j * 440, i * 400);
+      const openings = new Opening(j * 400, i * 400);
       openingList.push(openings);
     }
   }
 }
 
+// animate txtImg
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   $.each(openingList, function (idx, item) {
     item.update();
   });
-  window.requestAnimationFrame(animate);
+  window.requestAnimationFrame(animate); // loop
 }
 animate();
