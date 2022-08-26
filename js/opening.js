@@ -1,11 +1,16 @@
 // mainVisual canvas
-const canvas = $("#canvas")[0];
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const ctx = canvas.getContext("2d");
+const canvas = $("#canvas")[0]; // canvas DOM
+const ctx = canvas.getContext("2d"); // rendering context type "2d"
+canvas.width = window.innerWidth; // canvas width
+canvas.height = window.innerHeight; // canvas height
+// global scope
+const distanceX = (canvas.width - 247 * 4) / 4 + 247;
+const distanceY = (canvas.height - 132 * 3) / 2 + 132;
+// img Array
+const openingList = [];
 
-const openingTxt = new Image();
-openingTxt.src = "../images/main/nc644-opening-text.svg";
+const openingTxt = new Image(); // create new image
+openingTxt.src = "../images/main/nc644-opening-text.svg"; // source path
 
 class Opening {
   constructor(_x, _y) {
@@ -21,17 +26,21 @@ class Opening {
   update() {
     this.y -= this.speedY;
     this.draw();
+    // y값이 화면을 벗어나면 위치 초기화
+    if (this.y < -this.height) {
+      this.y = canvas.height;
+    }
   }
 }
 
-const openingList = [];
-for (let i = 0; i < 6; i++) {
-  for (let j = 0; j < 5; j++) {
+// prettier-ignore
+for (let i = 0; i < 3; i++) { // i = Y축
+  for (let j = 0; j < 5; j++) { // j = X축
     if (j % 2 === 1) {
-      const openings = new Opening(j * 400, i * 400 - 200);
+      const openings = new Opening(j * distanceX, i * distanceY + distanceY / 2);
       openingList.push(openings);
     } else {
-      const openings = new Opening(j * 400, i * 400);
+      const openings = new Opening(j * distanceX, i * distanceY);
       openingList.push(openings);
     }
   }
@@ -39,7 +48,7 @@ for (let i = 0; i < 6; i++) {
 
 // animate txtImg
 function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 비우기
   $.each(openingList, function (idx, item) {
     item.update();
   });
