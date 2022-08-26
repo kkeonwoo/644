@@ -98,9 +98,11 @@
       const now = new Date();
       const month = now.getMonth();
       const date = now.getDate();
+      // add 0 forward date
       function addZero(num) {
         return num < 10 ? "0" + num : "" + num;
       }
+      // monthArray
       const monthList = ["January", "Fabruary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
       dateDom.html(`check-in </br> <span>${addZero(date)} ${monthList[month]} (KST)</span>`);
 
@@ -109,9 +111,12 @@
       const count = {
         count100: 100,
       };
+      // add 0 for count. 숫자, 자릿수 정하기
       function fillZero(num, width) {
-        let n = num + "";
+        let n = num + ""; // num change to string
         return n.length >= width ? n : new Array(width - n.length + 1).join("0") + n;
+        // 숫자 길이가 자릿수보다 크가나 같으면 숫자 출력
+        // 그렇지 않다면, 자릿수에서 숫자 길이를 뺀 숫자만 큼 배열에 0을 추가
       }
       const countTL = gsap.timeline();
       gsap.defaults({
@@ -137,6 +142,9 @@
           stagger: {
             each: 0.5,
           },
+          onComplete: function () {
+            $("body").css("overflow", "auto"); // 644 등장 후, 스크롤
+          },
         })
         .to("#mainVisual .loading", {
           opacity: 0,
@@ -151,24 +159,23 @@
         });
 
       // opening door
-      // const bgWrap = $("#mainVisual .bgAni img");
-      // const openingDoorTL = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: "#mainVisual",
-      //     makers: true,
-      //     pin: true,
-      //     scrub: 1,
-      //     start: "top,top",
-      //     end: "bottom top",
-      //   },
-      // });
+      const bgWrap = $("#mainVisual .bgAni img");
+      const openingDoorTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#mainVisual",
+          makers: true,
+          pin: true,
+          scrub: 1,
+          start: "top,top",
+          end: "bottom top",
+        },
+      });
 
-      // openingDoorTL.to(bgWrap, {
-      //   y: -130,
-      //   width: "110%",
-      //   duration: 5,
-      //   ease: "none",
-      // });
+      openingDoorTL.to(bgWrap, {
+        scale: 2,
+        duration: 5,
+        ease: "none",
+      });
     </script>
   </body>
 </html>

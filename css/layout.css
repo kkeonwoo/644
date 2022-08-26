@@ -26,6 +26,7 @@ body {
   font-family: "HelveticaMedium", "Arial", sans-serif;
   word-break: keep-all;
   text-transform: uppercase;
+  overflow: hidden;
 }
 
 #header {

@@ -6,12 +6,12 @@ canvas.height = window.innerHeight; // canvas height
 // global scope
 const distanceX = (canvas.width - 247 * 4) / 4 + 247;
 const distanceY = (canvas.height - 132 * 3) / 2 + 132;
-// img Array
+// txtImg Array
 const openingList = [];
-
+// txtImg
 const openingTxt = new Image(); // create new image
 openingTxt.src = "../images/main/nc644-opening-text.svg"; // source path
-
+//txt constructor
 class Opening {
   constructor(_x, _y) {
     this.x = _x;

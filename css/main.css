@@ -38,8 +38,8 @@
 #mainVisual .bgAni img {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
   top: 30px;
+  transform: translate3d(-50%, 0, 0) scale(1, 1);
 }
 #mainVisual .contents .count {
   width: 300px;
