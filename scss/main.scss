@@ -13,13 +13,15 @@
 #mainVisual {
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   background-color: $bg-color;
   .bgAni {
     img {
-      position: absolute;
+      transform: translateX(-50%);
+      top: 13%;
       left: 50%;
-      top: 30px;
-      transform: translate3d(-50%, 0, 0) scale(1, 1);
+      position: absolute;
+      object-fit: cover;
     }
   }
   .contents {
@@ -128,7 +130,7 @@
     }
     img {
       @include absCenter(true, false);
-      top: 130px;
+      top: 23.5%;
       z-index: 2;
       width: 460px;
     }

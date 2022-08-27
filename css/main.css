@@ -33,13 +33,16 @@
 #mainVisual {
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   background-color: #ffbb00;
 }
 #mainVisual .bgAni img {
-  position: absolute;
+  transform: translateX(-50%);
+  top: 13%;
   left: 50%;
-  top: 30px;
-  transform: translate3d(-50%, 0, 0) scale(1, 1);
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #mainVisual .contents .count {
   width: 300px;
@@ -119,7 +122,8 @@
 }
 #mainVisual .contents .guideTxt .scrollDown {
   opacity: 0;
-  animation: moveTxtVertical 0.8s linear infinite both;
+  -webkit-animation: moveTxtVertical 0.8s linear infinite both;
+          animation: moveTxtVertical 0.8s linear infinite both;
 }
 #mainVisual .contents .guideTxt .scrollDown::after {
   content: "SCROLL DOWN";
@@ -161,9 +165,18 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 130px;
+  top: 23.5%;
   z-index: 2;
   width: 460px;
+}
+
+@-webkit-keyframes moveTxtVertical {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, 100%);
+  }
 }
 
 @keyframes moveTxtVertical {

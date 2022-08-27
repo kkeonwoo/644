@@ -165,17 +165,80 @@
           trigger: "#mainVisual",
           makers: true,
           pin: true,
-          scrub: 1,
-          start: "top,top",
+          scrub: 2,
+          start: "top top",
           end: "bottom top",
         },
       });
-
-      openingDoorTL.to(bgWrap, {
-        scale: 2,
-        duration: 5,
-        ease: "none",
-      });
+      openingDoorTL
+        .addLabel("hide")
+        .to(
+          ".guideTxt",
+          {
+            opacity: 0,
+            duration: 0.1,
+            ease: "none",
+          },
+          "hide"
+        )
+        .to(
+          ".arrow",
+          {
+            opacity: 0,
+            duration: 0.1,
+            ease: "none",
+          },
+          "hide"
+        )
+        .to(
+          ".notice",
+          {
+            opacity: 0,
+            duration: 0.1,
+            ease: "none",
+          },
+          "hide"
+        )
+        .addLabel("openingChange")
+        .to(
+          bgWrap,
+          {
+            scale: 5,
+            duration: 3,
+          },
+          "openingChange"
+        )
+        .to(
+          $("#mainVisual .count"),
+          {
+            y: -50,
+            scale: 2.5,
+          },
+          "openingChange"
+        )
+        .to(
+          $("#mainVisual .dot"),
+          {
+            scale: 2.5,
+            y: 120,
+          },
+          "openingChange"
+        )
+        .to(
+          ".bottomTxt",
+          {
+            scale: 1.3,
+          },
+          "openingChange"
+        )
+        .to(
+          "#mainVisual .contents img",
+          {
+            scale: 1.5,
+            y: 200,
+          },
+          "openingChange"
+        );
     </script>
   </body>
 </html>

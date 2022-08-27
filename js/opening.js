@@ -28,7 +28,7 @@ class Opening {
     this.draw();
     // y값이 화면을 벗어나면 위치 초기화
     if (this.y < -this.height) {
-      this.y = canvas.height;
+      this.y = canvas.height + this.height;
     }
   }
 }
