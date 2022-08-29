@@ -201,7 +201,16 @@
           "hide"
         )
         .addLabel("openingChange")
-        .to("#mainVisual .bg", { y: "0%", width: "100%", marginLeft: "-50%", duration: 3 }, "openingChange")
+        .to(
+          "#mainVisual .bg",
+          {
+            height: "100%",
+            width: "100%",
+            marginLeft: "-50%",
+            duration: 3,
+          },
+          "openingChange"
+        )
         .to(
           $("#mainVisual .count"),
           {

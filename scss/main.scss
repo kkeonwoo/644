@@ -11,19 +11,20 @@
 }
 
 #mainVisual {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   background-color: $bg-color;
   .bgAni {
     width: 100%;
+    height: 100%;
     overflow: hidden;
     .bg {
       border: 1px solid #111;
       background-color: $bg-color;
       width: 580px;
-      height: 700px;
-      top: 13%;
+      height: 680px;
+      bottom: 0;
       left: 50%;
       margin-left: -290px;
       position: absolute;

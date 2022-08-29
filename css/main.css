@@ -31,21 +31,22 @@
 }
 
 #mainVisual {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   background-color: #ffbb00;
 }
 #mainVisual .bgAni {
   width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 #mainVisual .bgAni .bg {
   border: 1px solid #111;
   background-color: #ffbb00;
   width: 580px;
-  height: 700px;
-  top: 13%;
+  height: 680px;
+  bottom: 0;
   left: 50%;
   margin-left: -290px;
   position: absolute;
