@@ -10,6 +10,7 @@ body {
 }
 
 #header {
+  transform: translateY(-100px);
   opacity: 0;
   display: flex;
   justify-content: space-between;
@@ -49,6 +50,15 @@ body {
     span {
       display: block;
       margin-left: 5px;
+    }
+  }
+  &.on {
+    opacity: 1;
+    transform: translateY(0);
+    #mainVisual {
+      .bgAni {
+        opacity: 0;
+      }
     }
   }
 }

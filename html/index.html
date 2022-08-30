@@ -94,6 +94,7 @@
       </section>
     </main>
     <script>
+      const wt = $(window).scrollTop();
       // header date
       const dateDom = $("#date");
       const now = new Date();
@@ -164,11 +165,19 @@
       const openingDoorTL = gsap.timeline({
         scrollTrigger: {
           trigger: "#mainVisual",
-          makers: true,
+          markers: true,
           pin: true,
           scrub: 2,
           start: "top top",
           end: "bottom top",
+          onLeave: () => {
+            $("#header").addClass("on");
+            $("#mainVisual").addClass("off");
+          },
+          onEnterBack: () => {
+            $("#header").removeClass("on");
+            $("#mainVisual").removeClass("off");
+          },
         },
       });
       openingDoorTL
@@ -242,6 +251,10 @@
           },
           "openingChange"
         );
+
+      if (wt >= $("#mainVisual").offset().top) {
+        console.log("aaa");
+      }
     </script>
   </body>
 </html>
