@@ -77,9 +77,6 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-#header.on #mainVisual .bgAni {
-  opacity: 0;
-}
 
 #gnb ul {
   display: flex;

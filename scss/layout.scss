@@ -55,11 +55,7 @@ body {
   &.on {
     opacity: 1;
     transform: translateY(0);
-    #mainVisual {
-      .bgAni {
-        opacity: 0;
-      }
-    }
+    
   }
 }
 
