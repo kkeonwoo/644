@@ -52,12 +52,13 @@ body {
   border: 1px solid #111;
   background-color: #ffbb00;
   width: 580px;
-  height: 680px;
+  height: 815px;
   bottom: 0;
   left: 50%;
   margin-left: -290px;
   position: absolute;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #mainVisual .contents .count {
   width: 300px;
@@ -137,7 +138,8 @@ body {
 }
 #mainVisual .contents .guideTxt .scrollDown {
   opacity: 0;
-  animation: moveTxtVertical 0.8s linear infinite both;
+  -webkit-animation: moveTxtVertical 0.8s linear infinite both;
+          animation: moveTxtVertical 0.8s linear infinite both;
 }
 #mainVisual .contents .guideTxt .scrollDown::after {
   content: "SCROLL DOWN";
@@ -182,6 +184,15 @@ body {
   top: 23.5%;
   z-index: 2;
   width: 460px;
+}
+
+@-webkit-keyframes moveTxtVertical {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, 100%);
+  }
 }
 
 @keyframes moveTxtVertical {

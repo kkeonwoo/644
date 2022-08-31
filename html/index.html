@@ -95,6 +95,17 @@
     </main>
     <script>
       const wt = $(window).scrollTop();
+      // add class to header, bgAni
+      // bg gsap이 끝나면 on mainvisual 밖이면 off bg gsap이 반복되면 off
+      function headerOn() {
+        $("#header").addClass("on");
+        $("#mainVisual").addClass("off");
+      }
+      // remove class to header, bgAni
+      function headerOff() {
+        $("#header").removeClass("on");
+        $("#mainVisual").removeClass("off");
+      }
       // header date
       const dateDom = $("#date");
       const now = new Date();
@@ -132,6 +143,7 @@
           ease: "linear",
           onUpdate: function () {
             count100.text(fillZero(Math.round(count.count100), 3));
+            $("body").css("overflow", "hidden");
           },
           onComplete: () => {
             count100.css({ opacity: 0 });
@@ -145,7 +157,7 @@
             each: 0.5,
           },
           onComplete: function () {
-            $("body").css("overflow", "auto"); // 644 등장 후, 스크롤
+            $("body").css("overflow-y", "auto"); // 644 등장 후, 스크롤
           },
         })
         .to("#mainVisual .loading", {
@@ -165,18 +177,13 @@
       const openingDoorTL = gsap.timeline({
         scrollTrigger: {
           trigger: "#mainVisual",
-          markers: true,
+          // markers: true,
           pin: true,
           scrub: 2,
           start: "top top",
-          end: "bottom top",
+          end: "bottom+=100% top",
           onLeave: () => {
-            $("#header").addClass("on");
-            $("#mainVisual").addClass("off");
-          },
-          onEnterBack: () => {
-            $("#header").removeClass("on");
-            $("#mainVisual").removeClass("off");
+            headerOff();
           },
         },
       });
@@ -213,8 +220,8 @@
         .to(
           "#mainVisual .bg",
           {
-            height: "100%",
             width: "100%",
+            height: "100%",
             marginLeft: "-50%",
             duration: 3,
           },
@@ -250,11 +257,29 @@
             y: 390,
           },
           "openingChange"
-        );
+        )
+        .to("#mainVisual .contents img", {
+          y: -1000,
+        });
 
-      if (wt >= $("#mainVisual").offset().top) {
-        console.log("aaa");
-      }
+      ScrollTrigger.create({
+        trigger: "#mainVisual .bg",
+        start: "bottom+=60% 1%",
+        end: "bottom+=200% 0%",
+        markers: true,
+        toggleClass: { targets: "#header", className: "on" },
+      });
+
+      // const mainVisualTL = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: "#header",
+      //     top: "bottom top",
+      //     bottom: "bottom+=500% top",
+      //     pin: true,
+      //     scrub: 1,
+      //     markers: true,
+      //   },
+      // });
     </script>
   </body>
 </html>
