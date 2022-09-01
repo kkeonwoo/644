@@ -50,7 +50,7 @@
     </header>
     <!-- // header -->
     <main>
-      <section id="mainVisual">
+      <section id="mainVisual" class="section">
         <div class="bgAni">
           <canvas id="canvas"></canvas>
           <div class="bg"></div>
@@ -90,6 +90,29 @@
             <p class="notice">본 웹사이트는 구글 크롬 브라우저에 최적화되어 있습니다.</p>
           </div>
           <img src="../images/main/nc644-intro-door.svg" alt="" />
+        </div>
+      </section>
+      <section id="about" class="section">
+        <div class="inner">
+          <div class="titleBox">
+            <h2 class="title">ABOUT</h2>
+            <h3>
+              A character <br />
+              focused creative <br />
+              studio
+            </h3>
+            <h4>
+              캐릭터 크리에이티브 <br />
+              스튜디오 644
+            </h4>
+          </div>
+          <p>어떤 일들이 일어나고, 기대감을 일으키는, 독립적인 공간</p>
+          <div class="contentsBox">
+            <div class="imgBox"><img src="../images/main/nc644-card-bg.jpg" alt="" /></div>
+            <div class="btns">
+              <button class="btn"><a href="">ABOUT 644</a></button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -179,7 +202,7 @@
           trigger: "#mainVisual",
           // markers: true,
           pin: true,
-          scrub: 2,
+          scrub: 1,
           start: "top top",
           end: "bottom+=100% top",
           onLeave: () => {
@@ -258,27 +281,35 @@
           },
           "openingChange"
         )
-        .to("#mainVisual .contents img", {
-          y: -1000,
-        });
+        .addLabel("afterOpening")
+        .to(
+          "#mainVisual .contents img",
+          {
+            y: -1500,
+          },
+          "afterOpening"
+        )
+        .to(
+          "#mainVisual .count644",
+          {
+            color: "rgba(255, 255, 255, 0.3)",
+          },
+          "afterOpening"
+        )
+        .to(
+          "#mainVisual .dot",
+          {
+            backgroundColor: "rgba(255, 255, 255, 0.3)",
+          },
+          "afterOpening"
+        );
 
-      ScrollTrigger.create({
-        trigger: "#mainVisual .bg",
-        start: "bottom+=60% 1%",
-        end: "bottom+=200% 0%",
-        markers: true,
-        toggleClass: { targets: "#header", className: "on" },
-      });
-
-      // const mainVisualTL = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: "#header",
-      //     top: "bottom top",
-      //     bottom: "bottom+=500% top",
-      //     pin: true,
-      //     scrub: 1,
-      //     markers: true,
-      //   },
+      // ScrollTrigger.create({
+      //   trigger: "#mainVisual .bg",
+      //   start: "bottom+=60% 1%",
+      //   end: "bottom+=200% 0%",
+      //   markers: true,
+      //   toggleClass: { targets: "#header", className: "on" },
       // });
     </script>
   </body>
