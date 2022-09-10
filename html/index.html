@@ -247,6 +247,9 @@
             height: "100%",
             marginLeft: "-50%",
             duration: 3,
+            onComplete: () => {
+              headerOn();
+            },
           },
           "openingChange"
         )
@@ -286,6 +289,9 @@
           "#mainVisual .contents img",
           {
             y: -1500,
+            onReverseComplete: () => {
+              headerOff();
+            },
           },
           "afterOpening"
         )
