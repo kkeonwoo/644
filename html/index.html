@@ -200,13 +200,13 @@
       const openingDoorTL = gsap.timeline({
         scrollTrigger: {
           trigger: "#mainVisual",
-          // markers: true,
+          markers: true,
           pin: true,
           scrub: 1,
           start: "top top",
           end: "bottom+=100% top",
           onLeave: () => {
-            headerOff();
+            $("#header").removeClass("on");
           },
         },
       });
@@ -254,7 +254,7 @@
           "openingChange"
         )
         .to(
-          $("#mainVisual .count"),
+          "#mainVisual .count",
           {
             y: -50,
             scale: 2.5,
@@ -262,7 +262,7 @@
           "openingChange"
         )
         .to(
-          $("#mainVisual .dot"),
+          "#mainVisual .dot",
           {
             scale: 2.5,
             y: 120,
@@ -296,6 +296,14 @@
           "afterOpening"
         )
         .to(
+          "#mainVisual .bottomTxt",
+          {
+            y: -1000,
+            delay: 0.2,
+          },
+          "afterOpening"
+        )
+        .to(
           "#mainVisual .count644",
           {
             color: "rgba(255, 255, 255, 0.3)",
@@ -309,14 +317,6 @@
           },
           "afterOpening"
         );
-
-      // ScrollTrigger.create({
-      //   trigger: "#mainVisual .bg",
-      //   start: "bottom+=60% 1%",
-      //   end: "bottom+=200% 0%",
-      //   markers: true,
-      //   toggleClass: { targets: "#header", className: "on" },
-      // });
     </script>
   </body>
 </html>
