@@ -110,14 +110,71 @@
           <div class="contentsBox">
             <div class="imgBox"><img src="../images/main/nc644-card-bg.jpg" alt="" /></div>
             <div class="btns">
-              <button class="btn"><a href="">ABOUT 644</a></button>
+              <button>
+                <a href="" class="btn">ABOUT 644</a>
+              </button>
             </div>
           </div>
+        </div>
+      </section>
+      <section id="mission" class="section">
+        <div class="inner">
+          <div class="titleBox">
+            <h2 class="title">MISSION</h2>
+            <h3>
+              A space for <br />
+              ceaseless creativity, <br />
+              and excitement
+            </h3>
+          </div>
+          <div class="contentsBox">
+            <ul class="list">
+              <li>
+                <span class="listNum">1</span>
+                <h4 class="subTitle">
+                  Limitless <br />
+                  Experiments
+                </h4>
+                <p class="desc">아이디어는 장난처럼,<br />장난은 진지하게 진행하여<br />끊임없이 새로움을 추구합니다.</p>
+              </li>
+              <li>
+                <span class="listNum">2</span>
+                <h4 class="subTitle">Excellence</h4>
+                <p class="desc">
+                  높은 퀄리티로 <br />
+                  소비자에게 <br />
+                  가치를 인정받는 <br />
+                  캐릭터 브랜드를 <br />
+                  지향합니다.
+                </p>
+              </li>
+              <li>
+                <span class="listNum">3</span>
+                <h4 class="subTitle">
+                  Thrilling <br />
+                  Expectations
+                </h4>
+                <p class="desc">
+                  제품과 콘텐츠를 통해 <br />
+                  지속적인 기대를 만들고자 합니다.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <div class="marquee">
+        <span>PLEASE DO NOT DISTURB</span>
+      </div>
+      <section id="doguri" class="section">
+        <div class="titleBox">
+          <h2 class="title">WORK</h2>
         </div>
       </section>
     </main>
     <script>
       const wt = $(window).scrollTop();
+      const arrow = $(".arrowImg");
       // add class to header, bgAni
       // bg gsap이 끝나면 on mainvisual 밖이면 off bg gsap이 반복되면 off
       function headerOn() {
@@ -154,6 +211,7 @@
         // 숫자 길이가 자릿수보다 크가나 같으면 숫자 출력
         // 그렇지 않다면, 자릿수에서 숫자 길이를 뺀 숫자만 큼 배열에 0을 추가
       }
+
       const countTL = gsap.timeline();
       gsap.defaults({
         duration: 1,
@@ -204,7 +262,7 @@
           pin: true,
           scrub: 1,
           start: "top top",
-          end: "bottom+=100% top",
+          end: "bottom-=10% top",
           onLeave: () => {
             $("#header").removeClass("on");
           },

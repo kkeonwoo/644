@@ -6,18 +6,51 @@ body {
   background-color: $bg-color;
 }
 
+.titleBox {
+  position: relative;
+  margin-bottom: 150px;
+  text-align: center;
+  .title {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 47%;
+    &:after {
+      width: 140px;
+      height: 50px;
+      @include pseudo;
+      @include absCenter(true, true);
+      background: {
+        position: 50%;
+        image: url("../images/main/nc644-tit-bean-bg.png");
+        size: contain;
+        repeat: no-repeat;
+      }
+    }
+  }
+  h3 {
+    font-family: "RecoletRegular";
+    font-size: $font-extra-large * 2;
+    text-transform: none;
+  }
+}
+
+.inner {
+  width: 1000px;
+  margin: 0 auto;
+}
+
 #canvas {
   width: 100%;
   height: 100vh;
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
 }
 
 #mainVisual {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   background-color: $bg-color;
   &.off {
     .bgAni {
@@ -29,44 +62,44 @@ body {
     height: 100%;
     overflow: hidden;
     .bg {
-      border: 1px solid #111;
-      background-color: $bg-color;
       width: 580px;
       height: 815px;
+      position: absolute;
       bottom: 0;
       left: 50%;
       margin-left: -290px;
-      position: absolute;
+      border: 1px solid #111;
+      background-color: $bg-color;
       object-fit: cover;
     }
   }
   .contents {
     .count {
-      width: 300px;
-      height: 160px;
-      padding: 0 30px;
-      overflow: hidden;
-      @include absCenter(true, true);
-      font-size: $font-extra-large + 120;
-      font-family: "644Number";
-      font-weight: 500;
       display: flex;
       justify-content: center;
-      letter-spacing: -4px;
+      width: 300px;
+      height: 160px;
       position: fixed;
+      overflow: hidden;
+      padding: 0 30px;
+      font-family: "644Number";
+      font-size: $font-extra-large + 120;
+      font-weight: 500;
+      letter-spacing: -4px;
+      @include absCenter(true, true);
       .count100 {
         position: fixed;
         top: -10%;
       }
       .count644 {
-        @include absCenter(true, true);
-        position: fixed;
         display: flex;
         justify-content: center;
+        position: fixed;
+        @include absCenter(true, true);
         .numWrap {
           display: flex;
-          flex-direction: column;
           align-items: center;
+          flex-direction: column;
           transform: translateY(25%);
           &:nth-child(1) {
             align-items: end;
@@ -81,26 +114,26 @@ body {
     .dot {
       width: 45px;
       height: 45px;
+      position: fixed;
+      top: 60%;
       border-radius: 100%;
       background-color: #000;
       @include absCenter(true, false);
-      position: fixed;
-      top: 60%;
     }
     .guideTxt {
+      width: 100%;
+      height: 20px;
       position: relative;
+      bottom: 25%;
+      overflow: hidden;
       font-size: $font-normal + 2;
       font-weight: 500;
       text-align: center;
-      overflow: hidden;
-      width: 100%;
-      height: 20px;
       @include absCenter(true, false);
-      bottom: 25%;
       .loading,
       .scrollDown {
-        width: 100%;
         display: inline-block;
+        width: 100%;
         position: absolute;
         // opacity: 0;
       }
@@ -114,21 +147,21 @@ body {
         opacity: 0;
         animation: moveTxtVertical 0.8s linear infinite both;
         &::after {
-          content: "SCROLL DOWN";
-          position: absolute;
           display: block;
-          font-size: $font-normal + 2;
-          @include absCenter(true, false);
+          position: absolute;
           bottom: 100%;
+          font-size: $font-normal + 2;
+          content: "SCROLL DOWN";
+          @include absCenter(true, false);
         }
       }
     }
     .bottomTxt {
-      @include absCenter(true, false);
       bottom: 30px;
-      text-align: center;
-      line-height: 1.2;
       font-size: 14px;
+      line-height: 1.2;
+      text-align: center;
+      @include absCenter(true, false);
       .notice {
         margin-top: 5px;
         font-family: "NotoSansKR-Medium", sans-serif;
@@ -138,20 +171,200 @@ body {
     .arrow {
       width: 32px;
       height: 32px;
-      @include absCenter(true, false);
       bottom: 17%;
+      @include absCenter(true, false);
       background: {
+        position: 50% 50%;
         image: url("../images/main/nc644-bul-arrow.png");
         size: contain;
         repeat: no-repeat;
-        position: 50% 50%;
       }
     }
     img {
-      @include absCenter(true, false);
+      width: 460px;
       top: 23.5%;
       z-index: 2;
-      width: 460px;
+      @include absCenter(true, false);
+    }
+  }
+}
+
+#about {
+  margin-bottom: 200px;
+  .inner {
+    position: relative;
+    .titleBox {
+      h4 {
+        position: absolute;
+        top: -20%;
+        left: 10%;
+        font-size: $font-normal + 2;
+        font-weight: 600;
+        line-height: 1.5;
+        text-align: left;
+      }
+    }
+    p {
+      display: inline-block;
+      width: 200px;
+      position: absolute;
+      right: 5%;
+      font-weight: 600;
+      line-height: 1.5;
+      text-indent: 18px;
+      &::before {
+        top: 8%;
+        left: 0;
+        border-radius: 100%;
+        @include pseudo;
+        @include box(14px, 14px, #111);
+      }
+    }
+    .contentsBox {
+      height: 100vh;
+      position: relative;
+      .imgBox {
+        width: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        img {
+          width: 100%;
+          height: 100%;
+          border: 1px solid #111;
+          object-fit: cover;
+        }
+      }
+      .btns {
+        position: absolute;
+        top: 50%;
+        right: 20%;
+        transform: translateY(-50%);
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 180px;
+          height: 180px;
+          position: relative;
+          border: 1px solid #111;
+          transition: all 0.25s ease-in-out;
+          border-radius: 100%;
+          &:hover {
+            color: $bg-color;
+            background-color: #f00;
+            .btn::after {
+              background-image: url("../images/main/nc644-bul-arrow-hover-yellow.png");
+            }
+          }
+          .btn {
+            display: inline-block;
+            width: 80px;
+            margin-top: -30px;
+            font-size: $font-normal + 2;
+            font-weight: 500;
+            text-align: center;
+            &::after {
+              width: 25px;
+              height: 25px;
+              top: 65%;
+              left: 50%;
+              transform: rotate(-90deg) translateY(-50%);
+              transition: all 0.25s ease-in-out;
+              @include pseudo;
+              background: {
+                size: contain;
+                repeat: no-repeat;
+                image: url("../images/main/nc644-bul-arrow.png");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#mission {
+  .titleBox {
+    h3 {
+      font-size: $font-extra-large * 1.5;
+    }
+  }
+  .contentsBox {
+    height: 100vh;
+    .list {
+      display: flex;
+      height: 100%;
+      > li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-basis: 33.33%;
+        text-align: center;
+        text-transform: none;
+        position: relative;
+        @for $i from 1 through 3 {
+          &:nth-child(#{$i}) {
+            background: {
+              position: 50%;
+              image: url("../images/main/nc644-mission-bg-list0#{$i}.svg");
+              repeat: no-repeat;
+              size: contain;
+            }
+          }
+        }
+        &:nth-child(1) {
+          height: 331px;
+          .listNum {
+            margin-bottom: 10px;
+          }
+        }
+        &:nth-child(2) {
+          height: 582px;
+          .listNum {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+        &:nth-child(3) {
+          flex-direction: column-reverse;
+          height: 373px;
+          .desc {
+            margin-bottom: 10px;
+          }
+          .subTitle {
+            margin-bottom: 10px;
+          }
+        }
+        .listNum {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 35px;
+          height: 35px;
+          font-size: $font-medium - 4;
+          color: $bg-color;
+          background-color: #111;
+          border-radius: 100%;
+        }
+        .subTitle {
+          font-size: $font-large;
+          font-family: "RecoletRegular";
+          line-height: 1.2;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+        .desc {
+          font-size: $font-medium - 8;
+          font-weight: 700;
+          line-height: 1.5;
+        }
+      }
     }
   }
 }
