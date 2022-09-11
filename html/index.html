@@ -174,18 +174,53 @@
     </main>
     <script>
       const wt = $(window).scrollTop();
-      const arrow = $(".arrowImg");
+      const header = $("#header");
+      const aboutTop = $("#about").offset().top;
       // add class to header, bgAni
       // bg gsap이 끝나면 on mainvisual 밖이면 off bg gsap이 반복되면 off
       function headerOn() {
-        $("#header").addClass("on");
+        header.addClass("on");
         $("#mainVisual").addClass("off");
       }
       // remove class to header, bgAni
       function headerOff() {
-        $("#header").removeClass("on");
+        header.removeClass("on");
         $("#mainVisual").removeClass("off");
       }
+      function gsapHeaderOn() {
+        gsap.from(header, { y: -100, ease: "linear", duration: 0.4 });
+      }
+      function gsapHeaderOff() {
+        gsap.to(header, { y: -100, ease: "linear", duration: 0.4 });
+      }
+
+      // 마우스 휠을 내리면 사라지고 올리면 나오는 헤더
+      function controlHeader() {
+        $("body").on("mousewheel", function (e) {
+          const deltaY = e.originalEvent.deltaY;
+          console.log(e);
+          console.log(wt);
+          if (wt > aboutTop) {
+            if (deltaY > 0) {
+              header.removeClass("on");
+              gsapHeaderOff();
+              // gsap.to("#header", { y: -200, ease: "linear", duration: 0.4 });
+            } else if (deltaY < 0) {
+              header.addClass("on");
+              gsapHeaderOn();
+              // gsap.from("#header", { y: -200, ease: "linear", duration: 0.4 });
+            }
+          }
+        });
+      }
+      // header에 마우스를 올리면 headerOff
+      function meHeader() {
+        header.on("mouseover", () => {
+          header.removeClass("on");
+          gsapHeaderOff();
+        });
+      }
+      meHeader();
       // header date
       const dateDom = $("#date");
       const now = new Date();
@@ -225,6 +260,7 @@
           onUpdate: function () {
             count100.text(fillZero(Math.round(count.count100), 3));
             $("body").css("overflow", "hidden");
+            $(window).scrollTop(0);
           },
           onComplete: () => {
             count100.css({ opacity: 0 });
@@ -265,6 +301,7 @@
           end: "bottom-=10% top",
           onLeave: () => {
             $("#header").removeClass("on");
+            controlHeader();
           },
         },
       });

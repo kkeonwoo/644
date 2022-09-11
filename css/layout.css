@@ -30,7 +30,6 @@ body {
 }
 
 #header {
-  transform: translateY(-100px);
   opacity: 0;
   display: flex;
   justify-content: space-between;
@@ -40,6 +39,7 @@ body {
   padding: 50px;
   font-size: 18px;
   font-weight: 500;
+  transition: opacity 0.4s ease-in-out;
 }
 #header #date {
   position: absolute;
@@ -64,10 +64,12 @@ body {
 }
 #header a:hover {
   color: #fc0000;
-  animation: gnbMove 1.2s linear infinite forwards;
+  -webkit-animation: gnbMove 1.2s linear infinite forwards;
+          animation: gnbMove 1.2s linear infinite forwards;
 }
 #header a:hover::after {
-  animation: gnbMove 1.2s linear infinite forworads;
+  -webkit-animation: gnbMove 1.2s linear infinite forworads;
+          animation: gnbMove 1.2s linear infinite forworads;
 }
 #header a span {
   display: block;
@@ -75,7 +77,6 @@ body {
 }
 #header.on {
   opacity: 1;
-  transform: translateY(0);
 }
 
 #gnb ul {
@@ -112,6 +113,15 @@ body {
   top: 0;
   right: 100%;
   content: attr(data-title);
+}
+
+@-webkit-keyframes gnbMove {
+  0% {
+    right: 0%;
+  }
+  100% {
+    right: -100%;
+  }
 }
 
 @keyframes gnbMove {
