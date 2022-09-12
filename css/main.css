@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "644Number";
   src: url("../font/644RoomNumber.woff2") format("woff2");
@@ -24,6 +25,7 @@
 }
 body {
   background-color: #ffbb00;
+  position: relative;
 }
 
 .titleBox {
@@ -413,6 +415,51 @@ body {
   line-height: 1.5;
 }
 
+.mousePointer {
+  width: 15px;
+  height: 15px;
+  background-color: #f00;
+  border-radius: 100%;
+  z-index: 100;
+  position: absolute;
+  top: -7.5px;
+  left: -7.5px;
+  pointer-events: none;
+}
+
+.topBtn {
+  position: fixed;
+  right: 3%;
+  bottom: 5%;
+  font-size: 18px;
+  overflow: hidden;
+  transition: all 0.25s ease-in-out;
+  z-index: 99;
+  opacity: 0;
+}
+.topBtn.on {
+  opacity: 1;
+}
+.topBtn:hover {
+  color: #f00;
+}
+.topBtn:hover .btn {
+  -webkit-animation: moveTopBtn 0.8s linear infinite forwards;
+          animation: moveTopBtn 0.8s linear infinite forwards;
+}
+.topBtn .btn {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.topBtn .btn::before {
+  content: "TOP ↑";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
 @-webkit-keyframes moveTxtVertical {
   0% {
     transform: translate(-50%, 0);
@@ -428,5 +475,21 @@ body {
   }
   100% {
     transform: translate(-50%, 100%);
+  }
+}
+@-webkit-keyframes moveTopBtn {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes moveTopBtn {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
   }
 }
