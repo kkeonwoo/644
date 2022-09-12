@@ -168,10 +168,24 @@
       </section>
       <div class="marquee">
         <span>PLEASE DO NOT DISTURB</span>
+        <span>PLEASE DO NOT DISTURB</span>
+        <span>PLEASE DO NOT DISTURB</span>
+        <span>PLEASE DO NOT DISTURB</span>
       </div>
       <section id="doguri" class="section">
         <div class="titleBox">
           <h2 class="title">WORK</h2>
+          <h3><img src="../images/main/nc644-character-doguri-name.png" alt="" /></h3>
+          <p class="desc">
+            엉망진창 막내여도 괜찮아, 귀여우면 됐지! <br />
+            K-직장인 도구리의 회사 생존기
+          </p>
+        </div>
+        <div class="contentsBox">
+          <div class="imgBox">
+            <img src="../images/main/nc644-character-doguri.png" alt="" />
+          </div>
+          <div class="doguriPointer"></div>
         </div>
       </section>
       <div class="mousePointer"></div>
@@ -233,15 +247,18 @@
         const wy = e.originalEvent.clientY;
         gsap.to(".mousePointer", { x: `${wx}`, y: `${wy}`, ease: "none", duration: 0.25 });
       });
+
       // header date
       const dateDom = $("#date");
       const now = new Date();
       const month = now.getMonth();
       const date = now.getDate();
+
       // add 0 forward date
       function addZero(num) {
         return num < 10 ? "0" + num : "" + num;
       }
+
       // monthArray
       const monthList = ["January", "Fabruary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
       dateDom.html(`check-in </br> <span>${addZero(date)} ${monthList[month]} (KST)</span>`);
@@ -306,7 +323,7 @@
       const openingDoorTL = gsap.timeline({
         scrollTrigger: {
           trigger: "#mainVisual",
-          markers: true,
+          // markers: true,
           pin: true,
           scrub: 1,
           start: "top top",
@@ -428,6 +445,81 @@
           },
           "afterOpening"
         );
+
+      // aboutTimeline
+      const imgBox = $("#about .imgBox");
+      const aboutTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#about",
+          // markers: true,
+          scrub: 1,
+          start: "top top",
+          end: "bottom top",
+          toggleActions: "restart pause resume pause",
+        },
+      });
+      aboutTL
+        .addLabel("aboutTrigger")
+        .from(
+          imgBox,
+          {
+            rotate: -30,
+            duration: 1,
+            ease: "none",
+          },
+          "aboutTrigger"
+        )
+        .from(
+          "#about .contentsBox",
+          {
+            y: 100,
+            ease: "none",
+          },
+          "aboutTrigger"
+        );
+
+      // missionTimeline
+      const missionTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#mission",
+          start: "top top",
+          end: "bottom top",
+          markers: true,
+          scrub: 1,
+          toggleActions: "restart pause resume pause",
+        },
+      });
+      missionTL
+        .addLabel("missionTL")
+        .to("#mission .list", { y: "50%", ease: "none" }, "missionTL")
+        .to("#mission .list >li:nth-child(1)", { y: "-20%", rotate: -5, duration: 1, ease: "none" }, "missionTL")
+        .to("#mission .list >li:nth-child(2)", { y: "-40%", rotate: 27, duration: 1, ease: "none" }, "missionTL")
+        .to("#mission .list >li:nth-child(3)", { y: "-50%", rotate: 10, duration: 1, ease: "none" }, "missionTL");
+
+      // marquee
+      const marquee = $(".marquee");
+      const copyMarquee = marquee.find("span").clone();
+      marquee.prepend(copyMarquee);
+      function moveTxt() {
+        gsap.from(".marquee span", { x: "-100%", duration: 10, ease: "linear", repeat: -1 });
+      }
+      moveTxt();
+
+      // doguriTimeline
+      const doguriTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#doguri",
+          start: "top-=20% top",
+          end: "bottom-=10% top",
+          scrub: 1,
+          markers: true,
+        },
+      });
+      doguriTL
+        .addLabel("doguri")
+        .from("#doguri h3", { y: 50, ease: "none", duration: 2 }, "doguri")
+        .from("#doguri .desc", { y: 50, ease: "none", duration: 2 }, "doguri")
+        .from("#doguri .imgBox", { y: 100, ease: "none", duration: 2 }, "doguri");
     </script>
   </body>
 </html>

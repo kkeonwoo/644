@@ -7,6 +7,10 @@ body {
   position: relative;
 }
 
+main {
+  width: 100vw;
+}
+
 .titleBox {
   position: relative;
   margin-bottom: 150px;
@@ -39,6 +43,12 @@ body {
 .inner {
   width: 1000px;
   margin: 0 auto;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #canvas {
@@ -192,6 +202,31 @@ body {
 
 #about {
   margin-bottom: 200px;
+  position: relative;
+  &:before {
+    @include pseudo;
+    left: -22%;
+    top: 30%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50% -50%);
+    background: {
+      image: url("../images/main/nc644-simbol01.svg");
+      repeat: no-repeat;
+    }
+  }
+  &::after {
+    @include pseudo;
+    right: -7%;
+    bottom: -35%;
+    width: 100%;
+    height: 100%;
+    background: {
+      image: url("../images/main/nc644-simbol02.svg");
+      position: right bottom;
+      repeat: no-repeat;
+    }
+  }
   .inner {
     position: relative;
     .titleBox {
@@ -227,20 +262,17 @@ body {
       .imgBox {
         width: 350px;
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) rotate(-5deg);
         img {
-          width: 100%;
-          height: 100%;
           border: 1px solid #111;
-          object-fit: cover;
         }
       }
       .btns {
         position: absolute;
-        top: 50%;
-        right: 20%;
+        top: 40%;
+        right: 15%;
         transform: translateY(-50%);
         button {
           display: flex;
@@ -254,7 +286,7 @@ body {
           border-radius: 100%;
           &:hover {
             color: $bg-color;
-            background-color: #f00;
+            background-color: $red;
             .btn::after {
               background-image: url("../images/main/nc644-bul-arrow-hover-yellow.png");
             }
@@ -288,15 +320,22 @@ body {
 }
 
 #mission {
+  height: 100vh;
+  position: relative;
+  margin-bottom: 400px;
   .titleBox {
+    margin-bottom: 0;
     h3 {
       font-size: $font-extra-large * 1.5;
     }
   }
   .contentsBox {
-    height: 100vh;
+    position: absolute;
+    top: 25%;
+    width: 1000px;
     .list {
       display: flex;
+      width: 100%;
       height: 100%;
       > li {
         display: flex;
@@ -319,12 +358,14 @@ body {
         }
         &:nth-child(1) {
           height: 331px;
+          transform: translateY(60%) rotate(-15deg);
           .listNum {
             margin-bottom: 10px;
           }
         }
         &:nth-child(2) {
           height: 582px;
+          transform: translateY(50%) rotate(17deg);
           .listNum {
             position: absolute;
             top: 10%;
@@ -335,6 +376,7 @@ body {
         &:nth-child(3) {
           flex-direction: column-reverse;
           height: 373px;
+          transform: translateY(120%) rotate(0deg);
           .desc {
             margin-bottom: 10px;
           }
@@ -370,13 +412,77 @@ body {
   }
 }
 
+.marquee {
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fcebf3 80%);
+  font-size: $font-medium - 2;
+  display: flex;
+  align-items: center;
+  span {
+    // animation: marquee 10s linear infinite forwards;
+    position: relative;
+    word-break: keep-all;
+    white-space: nowrap;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    &::before {
+      @include pseudo;
+      top: 0;
+      right: 0;
+      width: 30px;
+      transform: translateX(50%);
+      height: 100%;
+      background: {
+        image: url("../images/main/nc644-bul-emoji.png");
+        size: contain;
+        position: 50%;
+        repeat: no-repeat;
+      }
+    }
+  }
+}
+
+#doguri {
+  background-color: $bg-doguri;
+  height: 100%;
+  overflow: hidden;
+  .titleBox {
+    margin-top: 50px;
+    margin-bottom: 0;
+    h3 {
+      display: block;
+      width: 470px;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+    .desc {
+      font-size: $font-normal + 5;
+      font-weight: 900;
+      line-height: 1.5;
+      color: #593137;
+      font-family: "NotoSansKR-Bold", serif;
+      letter-spacing: -1px;
+    }
+  }
+  .contentsBox {
+    margin-bottom: 100px;
+    .imgBox {
+      width: 970px;
+      margin: 0 auto;
+    }
+  }
+}
+
 .mousePointer {
   width: 15px;
   height: 15px;
-  background-color: #f00;
+  background-color: $red;
   border-radius: 100%;
   z-index: 100;
-  position: absolute;
+  position: fixed;
   top: -7.5px;
   left: -7.5px;
   pointer-events: none;
@@ -395,7 +501,7 @@ body {
     opacity: 1;
   }
   &:hover {
-    color: #f00;
+    color: $red;
     .btn {
       animation: moveTopBtn 0.8s linear infinite forwards;
     }
@@ -429,5 +535,14 @@ body {
   }
   100% {
     transform: translateY(-100%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
