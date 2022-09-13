@@ -445,6 +445,15 @@ img {
   }
 }
 
+#doguri .desc,
+#spoonz .desc {
+  font-size: $font-normal + 5;
+  font-weight: 900;
+  line-height: 1.5;
+  font-family: "NotoSansKR-Bold", serif;
+  letter-spacing: -1px;
+}
+
 #doguri {
   background-color: $bg-doguri;
   height: 100%;
@@ -459,12 +468,7 @@ img {
       margin-top: 50px;
     }
     .desc {
-      font-size: $font-normal + 5;
-      font-weight: 900;
-      line-height: 1.5;
       color: #593137;
-      font-family: "NotoSansKR-Bold", serif;
-      letter-spacing: -1px;
     }
   }
   .contentsBox {
@@ -476,6 +480,127 @@ img {
   }
 }
 
+#spoonz {
+  background-color: #ffada7;
+  .titleBox {
+    padding-top: 200px;
+    margin-bottom: 10px;
+    h2 {
+      height: 110px;
+      margin-bottom: 20px;
+    }
+    .desc {
+      color: #fff;
+    }
+  }
+  .contentsBox {
+    .imgBox {
+      height: 750px;
+    }
+  }
+}
+
+#amenity {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 70%;
+    background: {
+      image: url("../images/main/nc644-project-amenity.jpg");
+      size: cover;
+      repeat: no-repeat;
+    }
+  }
+  .titleBox {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    h2 {
+      height: 100px;
+    }
+  }
+}
+
+#shop {
+  background-color: #fff;
+  padding-top: 200px;
+  padding-bottom: 20px;
+  .titleBox {
+    margin-bottom: 0;
+    .logo {
+      margin-bottom: 30px;
+      display: block;
+      height: 100px;
+    }
+    h3 {
+      font-size: $font-extra-large * 1.5;
+      font-family: "HelveticaRegular", serif;
+    }
+  }
+  .contentsBox {
+    .imgBox {
+      margin: 20px 0;
+      height: 270px;
+    }
+    .desc {
+      display: block;
+      text-align: center;
+      line-height: 1.5;
+      font-size: 18px;
+    }
+  }
+}
+
+#footer {
+  padding: 40px 50px;
+  background-color: #fff;
+  width: 100%;
+  position: relative;
+  line-height: 1.3;
+  font-size: 18px;
+  .copyright {
+    text-transform: none;
+  }
+  #address {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include absCenter(true, false);
+    bottom: 40px;
+    span {
+      display: block;
+    }
+    .email {
+      display: inline-block;
+      overflow: hidden;
+      span {
+        position: relative;
+        display: inline-block;
+        text-transform: none;
+        transition: color 0.25s ease;
+        padding: 0 5px;
+        &::before {
+          content: "644@ncsoft.com";
+          position: absolute;
+          display: block;
+          right: 100%;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &:hover {
+          color: $red;
+          animation: emailMove 3s linear infinite forwards;
+        }
+      }
+    }
+  }
+}
+
 .mousePointer {
   width: 15px;
   height: 15px;
@@ -483,8 +608,9 @@ img {
   border-radius: 100%;
   z-index: 100;
   position: fixed;
-  top: -7.5px;
-  left: -7.5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
@@ -520,15 +646,6 @@ img {
   }
 }
 
-@keyframes moveTxtVertical {
-  0% {
-    transform: translate(-50%, 0);
-  }
-  100% {
-    transform: translate(-50%, 100%);
-  }
-}
-
 @keyframes moveTopBtn {
   0% {
     transform: translateY(0);
@@ -544,5 +661,14 @@ img {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes emailMove {
+  0% {
+    right: 0%;
+  }
+  100% {
+    right: -100%;
   }
 }

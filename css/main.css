@@ -72,8 +72,7 @@ main {
 img {
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 
 #canvas {
@@ -106,8 +105,7 @@ img {
   margin-left: -290px;
   border: 1px solid #111;
   background-color: #ffbb00;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #mainVisual .contents .count {
   display: flex;
@@ -190,8 +188,7 @@ img {
 }
 #mainVisual .contents .guideTxt .scrollDown {
   opacity: 0;
-  -webkit-animation: moveTxtVertical 0.8s linear infinite both;
-          animation: moveTxtVertical 0.8s linear infinite both;
+  animation: moveTxtVertical 0.8s linear infinite both;
 }
 #mainVisual .contents .guideTxt .scrollDown::after {
   display: block;
@@ -493,6 +490,15 @@ img {
   background-repeat: no-repeat;
 }
 
+#doguri .desc,
+#spoonz .desc {
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.5;
+  font-family: "NotoSansKR-Bold", serif;
+  letter-spacing: -1px;
+}
+
 #doguri {
   background-color: #fcebf3;
   height: 100%;
@@ -509,12 +515,7 @@ img {
   margin-top: 50px;
 }
 #doguri .titleBox .desc {
-  font-size: 21px;
-  font-weight: 900;
-  line-height: 1.5;
   color: #593137;
-  font-family: "NotoSansKR-Bold", serif;
-  letter-spacing: -1px;
 }
 #doguri .contentsBox {
   margin-bottom: 100px;
@@ -524,6 +525,123 @@ img {
   margin: 0 auto;
 }
 
+#spoonz {
+  background-color: #ffada7;
+}
+#spoonz .titleBox {
+  padding-top: 200px;
+  margin-bottom: 10px;
+}
+#spoonz .titleBox h2 {
+  height: 110px;
+  margin-bottom: 20px;
+}
+#spoonz .titleBox .desc {
+  color: #fff;
+}
+#spoonz .contentsBox .imgBox {
+  height: 750px;
+}
+
+#amenity {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#amenity::before {
+  content: "";
+  display: block;
+  padding-top: 70%;
+  background-image: url("../images/main/nc644-project-amenity.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#amenity .titleBox {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#amenity .titleBox h2 {
+  height: 100px;
+}
+
+#shop {
+  background-color: #fff;
+  padding-top: 200px;
+  padding-bottom: 20px;
+}
+#shop .titleBox {
+  margin-bottom: 0;
+}
+#shop .titleBox .logo {
+  margin-bottom: 30px;
+  display: block;
+  height: 100px;
+}
+#shop .titleBox h3 {
+  font-size: 96px;
+  font-family: "HelveticaRegular", serif;
+}
+#shop .contentsBox .imgBox {
+  margin: 20px 0;
+  height: 270px;
+}
+#shop .contentsBox .desc {
+  display: block;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+#footer {
+  padding: 40px 50px;
+  background-color: #fff;
+  width: 100%;
+  position: relative;
+  line-height: 1.3;
+  font-size: 18px;
+}
+#footer .copyright {
+  text-transform: none;
+}
+#footer #address {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 40px;
+}
+#footer #address span {
+  display: block;
+}
+#footer #address .email {
+  display: inline-block;
+  overflow: hidden;
+}
+#footer #address .email span {
+  position: relative;
+  display: inline-block;
+  text-transform: none;
+  transition: color 0.25s ease;
+  padding: 0 5px;
+}
+#footer #address .email span::before {
+  content: "644@ncsoft.com";
+  position: absolute;
+  display: block;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#footer #address .email span:hover {
+  color: #fc0000;
+  animation: emailMove 3s linear infinite forwards;
+}
+
 .mousePointer {
   width: 15px;
   height: 15px;
@@ -531,8 +649,9 @@ img {
   border-radius: 100%;
   z-index: 100;
   position: fixed;
-  top: -7.5px;
-  left: -7.5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
@@ -553,8 +672,7 @@ img {
   color: #fc0000;
 }
 .topBtn:hover .btn {
-  -webkit-animation: moveTopBtn 0.8s linear infinite forwards;
-          animation: moveTopBtn 0.8s linear infinite forwards;
+  animation: moveTopBtn 0.8s linear infinite forwards;
 }
 .topBtn .btn {
   width: 100%;
@@ -569,31 +687,6 @@ img {
   left: 0;
 }
 
-@-webkit-keyframes moveTxtVertical {
-  0% {
-    transform: translate(-50%, 0);
-  }
-  100% {
-    transform: translate(-50%, 100%);
-  }
-}
-
-@keyframes moveTxtVertical {
-  0% {
-    transform: translate(-50%, 0);
-  }
-  100% {
-    transform: translate(-50%, 100%);
-  }
-}
-@-webkit-keyframes moveTopBtn {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
 @keyframes moveTopBtn {
   0% {
     transform: translateY(0);
@@ -602,7 +695,7 @@ img {
     transform: translateY(-100%);
   }
 }
-@-webkit-keyframes marquee {
+@keyframes marquee {
   0% {
     transform: translateX(-100%);
   }
@@ -610,11 +703,11 @@ img {
     transform: translateX(0);
   }
 }
-@keyframes marquee {
+@keyframes emailMove {
   0% {
-    transform: translateX(-100%);
+    right: 0%;
   }
   100% {
-    transform: translateX(0);
+    right: -100%;
   }
 }

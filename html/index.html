@@ -188,6 +188,50 @@
           <div class="doguriPointer"></div>
         </div>
       </section>
+      <section id="spoonz" class="section">
+        <div class="titleBox">
+          <h2><img src="../images/main/nc644-character-spoonz-co-name.png" alt="" /></h2>
+          <p class="desc">
+            스푼즈 섬에 모여 살며, 행복한 일상을 보내는 <br />
+            사랑스러운 비티, 신디, 디아볼, 핑 슬라임!
+          </p>
+        </div>
+        <div class="contentsBox">
+          <div class="imgBox">
+            <img src="../images/main/nc644-character-spoonz-co.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <section id="amenity" class="section">
+        <div class="titleBox">
+          <h2><img src="../images/main/nc644-project-amenity-name.png" alt="" /></h2>
+        </div>
+      </section>
+      <section id="shop" class="section">
+        <div class="titleBox">
+          <h2 class="logo"><img src="../images/main/nc644-logo.svg" alt="" /></h2>
+          <h3>
+            An independent space <br />
+            to create the new
+          </h3>
+        </div>
+        <div class="contentsBox">
+          <div class="imgBox">
+            <img src="../images/main/nc644-shop.jpg" alt="" />
+          </div>
+          <span class="desc">
+            644 IS THE CHARACTER CREATIVE STUDIO <br />
+            WHERE ENGAGING CHARACTERS COME TO LIFE.
+          </span>
+        </div>
+      </section>
+      <footer id="footer">
+        <div class="copyright">2020 © <br />NCSOFT Corporation. All Rights Reserved.</div>
+        <address id="address">
+          <span>37°23'58.8"N 127°06'32.1"E</span>
+          <a href="" class="email"><span>644@ncsoft.com</span></a>
+        </address>
+      </footer>
       <div class="mousePointer"></div>
     </main>
     <script>
@@ -245,7 +289,7 @@
       $(window).on("mousemove", function (e) {
         const wx = e.originalEvent.clientX;
         const wy = e.originalEvent.clientY;
-        gsap.to(".mousePointer", { x: `${wx}`, y: `${wy}`, ease: "none", duration: 0.25 });
+        gsap.to(".mousePointer", { left: `${wx}`, top: `${wy}`, ease: "none", duration: 0.25 });
       });
 
       // header date
@@ -484,7 +528,7 @@
           trigger: "#mission",
           start: "top top",
           end: "bottom top",
-          markers: true,
+          // markers: true,
           scrub: 1,
           toggleActions: "restart pause resume pause",
         },
@@ -512,7 +556,7 @@
           start: "top-=20% top",
           end: "bottom-=10% top",
           scrub: 1,
-          markers: true,
+          // markers: true,
         },
       });
       doguriTL
@@ -520,6 +564,65 @@
         .from("#doguri h3", { y: 50, ease: "none", duration: 2 }, "doguri")
         .from("#doguri .desc", { y: 50, ease: "none", duration: 2 }, "doguri")
         .from("#doguri .imgBox", { y: 100, ease: "none", duration: 2 }, "doguri");
+
+      // spoonzTimeline
+      const spoonzTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#spponz",
+          start: "top-=20% top",
+          end: "bottom-=10% top",
+          scrub: 1,
+          // markers: true,
+        },
+      });
+      spoonzTL.from("#spoonz .imgBox", {
+        y: 200,
+        ease: "none",
+      });
+
+      // shopTimeline
+      const shopTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#shop",
+          start: "top-=30% top",
+          end: "center-=30% top",
+          scrub: 1,
+        },
+      });
+      shopTL
+        .addLabel("shop")
+        .from(
+          "#shop .logo",
+          {
+            y: 50,
+            ease: "none",
+          },
+          "shop"
+        )
+        .from(
+          "#shop h3",
+          {
+            y: 100,
+            ease: "none",
+          },
+          "shop"
+        )
+        .from(
+          "#shop .desc",
+          {
+            y: 150,
+            ease: "none",
+          },
+          "shop"
+        )
+        .from(
+          "#shop .imgBox",
+          {
+            y: 150,
+            ease: "none",
+          },
+          "shop"
+        );
     </script>
   </body>
 </html>
