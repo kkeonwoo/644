@@ -6,7 +6,8 @@ body {
   font-family: "HelveticaMedium", "Arial", sans-serif;
   word-break: keep-all;
   text-transform: uppercase;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 #header {

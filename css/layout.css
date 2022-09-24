@@ -26,7 +26,8 @@ body {
   font-family: "HelveticaMedium", "Arial", sans-serif;
   word-break: keep-all;
   text-transform: uppercase;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 #header {
@@ -64,12 +65,10 @@ body {
 }
 #header a:hover {
   color: #fc0000;
-  -webkit-animation: gnbMove 1.2s linear infinite forwards;
-          animation: gnbMove 1.2s linear infinite forwards;
+  animation: gnbMove 1.2s linear infinite forwards;
 }
 #header a:hover::after {
-  -webkit-animation: gnbMove 1.2s linear infinite forworads;
-          animation: gnbMove 1.2s linear infinite forworads;
+  animation: gnbMove 1.2s linear infinite forworads;
 }
 #header a span {
   display: block;
@@ -113,15 +112,6 @@ body {
   top: 0;
   right: 100%;
   content: attr(data-title);
-}
-
-@-webkit-keyframes gnbMove {
-  0% {
-    right: 0%;
-  }
-  100% {
-    right: -100%;
-  }
 }
 
 @keyframes gnbMove {

@@ -236,6 +236,7 @@
     </main>
     <script>
       const wt = $(window).scrollTop();
+      console.log(wt);
       const header = $("#header");
       const aboutTop = $("#about").offset().top;
       // add class to header, bgAni
@@ -250,15 +251,17 @@
         $("#mainVisual").removeClass("off");
       }
       function gsapHeaderOn() {
+        gsap.killTweensOf(header);
         gsap.from(header, { y: -100, ease: "linear", duration: 0.4 });
       }
       function gsapHeaderOff() {
+        gsap.killTweensOf(header);
         gsap.to(header, { y: -100, ease: "linear", duration: 0.4 });
       }
 
       // 마우스 휠을 내리면 사라지고 올리면 나오는 헤더
       function controlHeader() {
-        $("body").on("mousewheel", function (e) {
+        $("body").on("scroll", function (e) {
           const deltaY = e.originalEvent.deltaY;
           console.log(e);
           console.log(wt);
@@ -332,7 +335,7 @@
           ease: "linear",
           onUpdate: function () {
             count100.text(fillZero(Math.round(count.count100), 3));
-            $("body").css("overflow", "hidden");
+            // $("body").css("overflow-y", "hidden");
             $(window).scrollTop(0);
           },
           onComplete: () => {
